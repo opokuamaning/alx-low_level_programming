@@ -1,34 +1,36 @@
-#include<stdio.h>
+#include <stdio.h>
 /**
- * main - Determines if a number is positive, negative or zero.
+ * main - Prints all possible combinations of two two-digit numbers
  *
- * Return: Always 0 (Success)
+ * Return: Always 0 (Success)
  */
 int main(void)
 {
-	int only_ones;
-	int only_tens;
-	int only_huns;
+	int first_num = 0, second_num;
 
-	for (only_huns = '0'; only_huns <= '9'; only_huns++)
+	while (first_num <= 99)
 	{
-		for (only_tens = (only_huns + 1); only_tens <= '9'; only_tens++)
+		second_num = first_num;
+		while (second_num <= 99)
 		{
-			for (only_ones = (only_tens + 1); only_ones <= '9'; only_ones++)
+			if (second_num != first_num)
 			{
-				putchar(only_huns);
-				putchar(only_tens);
-				putchar(only_ones);
+				putchar((first_num / 10) + 48);
+				putchar((first_num % 10) + 48);
+				putchar(' ');
+				putchar((second_num / 10) + 48);
+				putchar((second_num % 10) + 48);
 
-				if (only_huns != '7' || only_tens != '8' || only_ones != '9')
+				if (first_num != 98 || second_num != 99)
 				{
 					putchar(',');
 					putchar(' ');
 				}
 			}
+			second_num++;
 		}
+		first_num++;
 	}
-
 	putchar('\n');
 	return (0);
 }
