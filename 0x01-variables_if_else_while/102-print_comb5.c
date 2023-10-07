@@ -4,37 +4,37 @@
  *
  * Return: Always 0 (Success)
  */
+#include <stdio.h>
+
+/**
+ *main - print all combinations of three different digits
+ *Return: Always 0 (Success)
+ */
+
 int main(void)
 {
-	int tens;
-	int ones;
-	int t2;
-	int o2;
+	int one;
+	int ten;
+	int hundred;
 
-	for (tens = '0'; tens <= 9; tens++)
+	for (hundred = '0'; hundred <= '9'; hundred++) /*hundreds place*/
 	{
-		for (ones = '0'; ones <= '9'; ones++)
+		for (ten = (hundred + 1); ten <= '9'; ten++) /*tens=100s+1*/
 		{
-			for (t2 = tens; t2 <= '9'; t2++)
+			for (one = (ten + 1); one <= '9'; one++) /*ones*/
 			{
-				for (o2 = ones + 1; o2 <= '9'; o2++)
+				putchar(hundred);
+				putchar(ten);
+				putchar(one);
+				if (hundred != '7' || ten != '8' || one != '9')
 				{
-					putchar(tens);
-					putchar(ones);
+					putchar(',');
 					putchar(' ');
-					putchar(t2);
-					putchar(o2);
-
-					if (!((tens == '9' && ones == '8') && (t2 == '9' && o2 == '9')))
-					{
-						putchar(',');
-						putchar(' ');
-					}
 				}
-				o2 = '0';
 			}
 		}
 	}
 	putchar('\n');
+
 	return (0);
 }

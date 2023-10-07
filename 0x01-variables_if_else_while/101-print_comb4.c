@@ -4,33 +4,37 @@
  *
  * Return: Always 0 (Success)
  */
+#include <stdio.h>
+
+/**
+ *main - print all combinations of three different digits
+ *Return: Always 0 (Success)
+ */
+
 int main(void)
 {
-	int first_num = 0, second_num;
+	int one;
+	int ten;
+	int hundred;
 
-	while (first_num <= 99)
+	for (hundred = '0'; hundred <= '9'; hundred++) /*hundreds place*/
 	{
-		second_num = first_num;
-		while (second_num <= 99)
+		for (ten = (hundred + 1); ten <= '9'; ten++) /*tens=100s+1*/
 		{
-			if (second_num != first_num)
+			for (one = (ten + 1); one <= '9'; one++) /*ones*/
 			{
-				putchar((first_num / 10) + 48);
-				putchar((first_num % 10) + 48);
-				putchar(' ');
-				putchar((second_num / 10) + 48);
-				putchar((second_num % 10) + 48);
-
-				if (first_num != 98 || second_num != 99)
+				putchar(hundred);
+				putchar(ten);
+				putchar(one);
+				if (hundred != '7' || ten != '8' || one != '9')
 				{
 					putchar(',');
 					putchar(' ');
 				}
 			}
-			second_num++;
 		}
-		first_num++;
 	}
 	putchar('\n');
+
 	return (0);
 }
