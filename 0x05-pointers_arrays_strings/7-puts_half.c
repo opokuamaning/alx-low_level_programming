@@ -10,7 +10,7 @@ int _strlen(char *s)
 {
 	int len = 0;
 
-	for (len = 0; len != '\0'; len++)
+	for (len = 0; *s != '\0'; len++)
 	{
 		s++;
 	}
@@ -42,6 +42,5 @@ void puts_half(char *str)
 	{
 		_putchar(*(str + index));
 	}
-
 	_putchar('\n');
 }
