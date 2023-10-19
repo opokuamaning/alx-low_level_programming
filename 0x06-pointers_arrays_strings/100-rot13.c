@@ -19,8 +19,8 @@ char *rot13(char *str)
 			{
 				char base = (c >= 'A' && c <= 'Z') ? 'A' : 'a';
 
-				c = (((c - base) + 13) % 26) + base;
-				str[i] = c;
+				int offset = (c - base + 13) % 26;
+				str[i] = offset + base;
 			}
 		}
 	}
