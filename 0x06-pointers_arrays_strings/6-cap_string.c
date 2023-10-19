@@ -22,7 +22,7 @@ char *cap_string(char *str)
 			break;
 		}
 
-		if(strchr(sep_chars, str[i]) != NULL)
+		if (strchr(sep_chars, str[i]) != NULL)
 		{
 			cap_flag = 1;
 		}
