@@ -17,13 +17,11 @@ char *rot13(char *str)
 			/* Apply ROT13 */
 			if ((c >= 'A' && c <= 'Z'))
 			{
-				c = (c - 'A' + 13) % 26 + 'A';
+				char base = (c >= 'A' && c <= 'Z') ? 'A' : 'a';
+
+				c = (((c - base) + 13) % 26) + base;
+				str[i] = c;
 			}
-			else
-			{
-				c = (c - 'a' + 13) % 26 + 'a';
-			}
-			str[i] = c;
 		}
 	}
 	return (str);
