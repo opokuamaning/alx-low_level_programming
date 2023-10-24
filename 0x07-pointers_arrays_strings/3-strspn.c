@@ -8,11 +8,11 @@
 unsigned int _strspn(char *s, char *accept)
 {
 	unsigned int count = 0;
-	int found = 0;
 
 	while (*s != '\0')
 	{
 		int i;
+		int found = 0;
 
 		for (i = 0; accept[i] != '\0'; i++)
 		{
