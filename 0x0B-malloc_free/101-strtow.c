@@ -3,35 +3,6 @@
 #include <stdio.h>
 
 /**
- * count_words - Count the number of words in a string
- * @str: The string to count words in
- *
- * Return: The number of words in the string
- */
-int count_words(char *str)
-{
-	int count = 0;
-	int in_word = 0;
-
-	while (*str)
-	{
-		if (*str == ' ')
-		{
-			if (in_word)
-			in_word = 0;
-		}
-		else if (!in_word)
-		{
-			in_word = 1;
-			count++;
-		}
-		str++;
-	}
-
-	return (count);
-}
-
-/**
  * strtow - Split a string into words
  * @str: The string to split
  *
@@ -39,43 +10,56 @@ int count_words(char *str)
  */
 char **strtow(char *str)
 {
+	int i, j, len = 0, word_count = 0;
 	char **words;
-	int i, j, k, len = 0, word_count = count_words(str);
 
 	if (str == NULL || str[0] == '\0')
+	{
 		return (NULL);
+	}
+
+	word_count = count_words(str);
+
+	if (word_count == 0)
+	{
+		return (NULL);
+	}
 
 	words = malloc(sizeof(char *) * (word_count + 1));
 
 	if (words == NULL)
-		return (NULL);
-
-	for (i = 0; i < word_count; i++)
 	{
-		while (*str == ' ')
-		str++;
-
-		len = 0;
-		while (str[len] != ' ' && str[len] != '\0')
-		len++;
-
-		words[i] = malloc(sizeof(char) * (len + 1));
-
-		if (words[i] == NULL)
-		{
-			for (k = 0; k < i; k++)
-			free(words[k]);
-			free(words);
-			return (NULL);
-		}
-
-		for (j = 0; j < len; j++)
-			words[i][j] = *str++;
-
-		words[i][j] = '\0';
+		return (NULL);
 	}
-	words[i] = NULL;
+
+	for (i = 0; str[i] && word_count > 0; i++)
+	{
+		if (str[i] != ' ')
+		{
+			len = 0;
+
+			while (str[i + len] && str[i + len] != ' ')
+			{
+				len++;
+			}
+
+			words[word_count - 1] = malloc(len + 1);
+
+			if (words[word_count - 1] == NULL)
+			{
+				return (NULL);
+			}
+
+			for (j = 0; j < len; j++, i++)
+			{
+				words[word_count - 1][j] = str[i];
+			}
+
+			words[word_count - 1][j] = '\0';
+			word_count--;
+		}
+	}
+	words[0] = NULL;
 
 	return (words);
 }
-
