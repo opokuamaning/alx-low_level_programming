@@ -1,6 +1,20 @@
 #include "lists.h"
 
 /**
+ * _strlen - find string length
+ * @str: string
+ * Return: length
+ */
+int _strlen(const char *str)
+{
+	int len;
+
+	for (len = 0; str[len] != '\0'; len++)
+		;
+	return (len);
+}
+
+/**
  * add_node: Adds a new node at the beginning of a list
  * @head: Double pointer to the head of the linked list
  * @str: String to be duplicated and added to the new node
