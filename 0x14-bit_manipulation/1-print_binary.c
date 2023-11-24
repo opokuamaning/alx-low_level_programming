@@ -28,12 +28,11 @@ void print_binary(unsigned long int n)
 			one_found = 1;
 		}
 		/* Print 0 only if at least one bit is set */
-		else if(one_found)
+		else if (one_found)
 		{
 			_putchar('0');
 		}
 		/* Move to the next lower bit */
 		mask >>= 1;
 	}
-
 }
